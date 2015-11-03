@@ -30,12 +30,15 @@ return req;
 //*************************************************
 var miPeticion = obtiene_http_request();
 //*************************************************
-function from(id,div,url){
+function ajax(id,div,url)
+{
 		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la página en el caché...
 		var vinculo=url+"?id="+id+"&rand="+mi_aleatorio;
 		//alert(vinculo);
 		miPeticion.open("GET",vinculo,true);//ponemos true para que la petición sea asincrónica
+        
 		miPeticion.onreadystatechange=miPeticion.onreadystatechange=function(){
+               //alert(miPeticion.status);
                if (miPeticion.readyState==4)
                {
 				   //alert(miPeticion.readyState);
@@ -62,7 +65,7 @@ function from(id,div,url){
            $.post
             (
                 url,
-                {valor:id},
+                {id:id,otro:"32432"},
                 function(resp)
                {
                     $("#"+div+"").html(resp);
